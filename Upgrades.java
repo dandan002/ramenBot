@@ -45,8 +45,16 @@ public class Upgrades {
 
         // looping through all the values
         for (int i = 0; i < upgrades.length; i++) {
-            str.append("\n" + (i + 1) + ") " + upgrades[i] + CYAN_TEXT + " (" + userUpgradeLvl[i] + "/"
-                    + MAX_UPGRADE_LVL + ")" + RESET + " - $" + upgradeCosts[i]);
+            // displays upgrades available for purchase in cyan
+            if (userUpgradeLvl[i] != MAX_UPGRADE_LVL) {
+                str.append("\n" + (i + 1) + ") " + upgrades[i] + CYAN_TEXT + " (" + userUpgradeLvl[i] + "/"
+                + MAX_UPGRADE_LVL + ")" + RESET + " - $" + upgradeCosts[i]);
+            } 
+            // displays maxed out upgrades in default color
+            else {
+                str.append("\n" + (i + 1) + ") " + upgrades[i] + " (" + userUpgradeLvl[i] + "/"
+                        + MAX_UPGRADE_LVL + ") - $" + upgradeCosts[i]);
+            }
         }
 
         return str.toString();
