@@ -34,6 +34,10 @@ public class Testing {
         temp.buyUpgrade(2);
         temp.buyUpgrade(2);
         temp.buyUpgrade(2);
+        temp.buyUpgrade(4);
+        temp.buyUpgrade(3);
+        temp.buyUpgrade(0);
+        temp.buyUpgrade(0);
 
         // print out updated state of upgrades
         System.out.println(temp.printUpgrades());
