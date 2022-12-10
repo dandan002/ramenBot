@@ -25,13 +25,13 @@ public class Upgrades {
 
     public void buyUpgrade(int index) {
         if (index < 0 || index > upgrades.length) {
-            System.out.println(RED_TEXT + "Uh oh! Your input is invalid. Please try again." + RESET);
+            System.out.println(RED_TEXT + "\nUh oh! Your input is invalid. Please try again." + RESET);
         }
 
         // check if there is enough money in balance
 
         if (userUpgradeLvl[index] == 5) {
-            System.out.println(RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
+            System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
         } else {
             userUpgradeLvl[index]++;
             // how am i supposed to take the cost out of balance
