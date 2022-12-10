@@ -6,17 +6,13 @@ public class Testing {
         Menu test = new Menu(); // creates new Menu
 
         // second menu item should be shoyu ramen now
-        test.changeItem(1, 5); // changes menu item
+        test.changeItem(3, 7); // changes menu item
         
         // prints out entire menu
         System.out.println(test.displayMenu());
 
-        System.out.println();
-
         // prints out possible menu items
-        for (int i = 0; i < test.returnAll().length; i++) {
-            System.out.println(test.returnAllItem(i));
-        }
+        System.out.println(test.displayAll());
 
         System.out.println();
 

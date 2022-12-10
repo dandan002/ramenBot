@@ -7,7 +7,7 @@ public class Menu {
     public static final String RESET = "\u001B[0m";
 
     // defining all possible menu items
-    private final String[] MENU_ITEMS = {"Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen", "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl", "Japanese Curry Rice Bowl"};
+    private final String[] MENU_ITEMS = {"Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen", "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl"};
 
     private String[] userMenu; // holds user menu
 
@@ -17,7 +17,7 @@ public class Menu {
 
         // auto-populated with first five possible menu items
         for (int i = 0; i < userMenu.length; i++) {
-            this.userMenu[i] = MENU_ITEMS[i];
+            userMenu[i] = MENU_ITEMS[i];
         }
     }
 
@@ -49,17 +49,24 @@ public class Menu {
 
         // printing error message
         if (ogValid || newValid) {
-            System.out.println(RED_TEXT + "Uh oh! Menu item number is not valid. Please try again." + RESET);
+            System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET);
         }
 
         else {
-            userMenu[ogIndex] = MENU_ITEMS[newIndex];
+            for (int i = 0; i < userMenu.length; i++) {
+                if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
+                    System.out.println(RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
+                }
+                else {
+                    userMenu[ogIndex] = MENU_ITEMS[newIndex];
+                }
+            }
         }
     }
 
     public String displayMenu() {
         StringBuilder menu = new StringBuilder();
-        menu.append(GREEN_TEXT + "Your Menu:" + RESET);
+        menu.append(GREEN_TEXT + "\nYour Menu:" + RESET);
 
         for (int i = 0; i < userMenu.length; i++) {
             menu.append("\n" + (i + 1) + ") " + userMenu[i]);
@@ -70,13 +77,10 @@ public class Menu {
 
     public String displayAll() {
         StringBuilder str = new StringBuilder();
-        str.append(BLUE_TEXT + "Possible Items:" + RESET);
+        str.append(BLUE_TEXT + "\nPossible Items:" + RESET);
 
-        for (int i = 0; i < userMenu.length; i++) {
-            
-
-            
-            str.append("\n" + userMenu[i]);
+        for (int i = 0; i < MENU_ITEMS.length; i++) {
+            str.append("\n" + (i + 1) + ") " + MENU_ITEMS[i]);
         }
 
         return str.toString();
