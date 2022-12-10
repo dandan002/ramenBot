@@ -10,7 +10,7 @@ public class Menu {
         userMenu = new String[5]; // menu size must be 5
 
         // auto-populated with first five
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < userMenu.length; i++) {
             this.userMenu[i] = menuItems[i];
         }
     }
@@ -26,12 +26,8 @@ public class Menu {
     }
 
     // change item on menu
-    public void changItem(int index) {
-        for (int i = 0; i  < userMenu.length; i++) {
-            if (userMenu[i] == null) {
-
-            }
-        }
+    public void changeItem(int index) {
+        
     }
 
     public static void main(String[] args) {
