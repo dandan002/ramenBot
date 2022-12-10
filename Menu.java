@@ -51,18 +51,20 @@ public class Menu {
         if (ogValid || newValid) {
             System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET);
         }
-
         else {
-            for (int i = 0; i < userMenu.length; i++) {
-                if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
-                    System.out.println(RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
+        for (int i = 0; i < userMenu.length; i++) {
+                    if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
+                        System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
+                    }
+                    else {
+                        continue;
+                    }
                 }
-                else {
-                    userMenu[ogIndex] = MENU_ITEMS[newIndex];
-                }
-            }
+            
+                userMenu[ogIndex] = MENU_ITEMS[newIndex];
         }
     }
+    
 
     public String displayMenu() {
         StringBuilder menu = new StringBuilder();
