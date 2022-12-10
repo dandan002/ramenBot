@@ -9,9 +9,7 @@ public class Testing {
         test.changeItem(1, 5); // changes menu item
         
         // prints out entire menu
-        for (int i = 0; i < test.returnMenu().length; i++) {
-            System.out.println(test.returnMenuItem(i));
-        }
+        System.out.println(test.displayMenu());
 
         System.out.println();
 
@@ -20,7 +18,9 @@ public class Testing {
             System.out.println(test.returnAllItem(i));
         }
 
-        // test.changeItem(1, 17); // should print an error statement
+        System.out.println();
+
+        test.changeItem(1, 17); // should print an error statement
 
     }
 }
