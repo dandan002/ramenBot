@@ -15,7 +15,7 @@ public class Functions {
         str.append(BLUE_TEXT + "\nList of Commands" + RESET);
         // print out each command and description
         for (int i = 0; i < commands.length; i++) {
-            str.append("\n" + commands[i] + RESET + " - " + commandDesc[i]);
+            str.append("\n" + BLUE_TEXT + commands[i] + RESET + " - " + commandDesc[i]);
         }
 
         return str.toString();
