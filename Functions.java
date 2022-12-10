@@ -5,7 +5,8 @@ public class Functions {
 
     // list of commands and their descriptions
     private static final String[] commands = { "Work", "Upgrade", "Balance", "Menu", "Help", "Cancel" };
-    private static final String[] commandDesc = { "Work for money", "View all purchasable upgrades", "View user balance",
+    private static final String[] commandDesc = { "Work for money", "View all purchasable upgrades",
+            "View user balance",
             "View menu options and user menu", "View all commands for Ramen Bot",
             "Cancel the command" };
 
