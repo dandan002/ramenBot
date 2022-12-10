@@ -53,15 +53,15 @@ public class Menu {
         }
         else {
         for (int i = 0; i < userMenu.length; i++) {
-                    if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
-                        System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
-                    }
-                    else {
-                        continue;
-                    }
-                }
+            if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
+                System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
+            }
+            else {
+                 continue;
+                 }
+            }
             
-                userMenu[ogIndex] = MENU_ITEMS[newIndex];
+            userMenu[ogIndex] = MENU_ITEMS[newIndex];
         }
     }
     
