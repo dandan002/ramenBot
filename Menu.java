@@ -9,7 +9,7 @@ public class Menu {
     public Menu() {
         userMenu = new String[5]; // menu size must be 5
 
-        // auto-populated with first five
+        // auto-populated with first five possible menu items
         for (int i = 0; i < userMenu.length; i++) {
             this.userMenu[i] = menuItems[i];
         }
@@ -25,7 +25,7 @@ public class Menu {
         return menuItems[index];
     }
 
-    // change item on menu
+    // change item on menu, input is user menu index and all items index
     public void changeItem(int ogIndex, int newIndex) {
         menuItems[ogIndex] = menuItems[newIndex];
     }
