@@ -9,12 +9,20 @@ public class Testing {
         test.changeItem(1, 5); // changes menu item
         
         // prints out entire menu
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < test.returnMenu().length; i++) {
             String item = test.returnMenuItem(i);
             System.out.println(item);
         }
 
-        test.changeItem(1, 17); // should print an error statement
+        System.out.println();
+
+        // prints out possible menu items
+        String[] allItems = test.returnAll();
+        for (int i = 0; i < test.returnAll().length; i++) {
+            System.out.println(allItems[i]);
+        }
+
+        // test.changeItem(1, 17); // should print an error statement
 
     }
 }

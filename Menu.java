@@ -16,13 +16,18 @@ public class Menu {
     }
 
     // returns all possible menu items (as an array) 
-    public String[] returnMenu() {
+    public String[] returnAll() {
         return menuItems;
+    }
+    
+    // returns user menu as an array
+    public String[] returnMenu() {
+        return userMenu;
     }    
 
-    // returns possible menu item at user-specified index
+    // returns user menu item at user-specified index
     public String returnMenuItem(int index) {
-        return menuItems[index];
+        return userMenu[index];
     }
 
     // change item on menu, input is user menu index and all items index
@@ -44,7 +49,7 @@ public class Menu {
 
     public void displayMenu() {
         StringBuilder menu = new StringBuilder();
-        menu.append()
+        menu.append("Menu");
     }
 
     public static void main(String[] args) {
