@@ -20,9 +20,14 @@ public class Testing {
         test.changeItem(1, 17); // should print an error statement
         test.changeItem(1, 7); // should print a different error
 
-        
+
         // testing Functions
         System.out.println(Functions.help());
+
+        // testing Upgrades
+        Upgrades temp = new Upgrades();
+
+        System.out.println(temp.printUpgrades());
 
     }
 }

@@ -23,10 +23,12 @@ public class Upgrades {
         }
     }
 
-    private void buyUpgrade(int index) {
+    public void buyUpgrade(int index) {
         if (index < 0 || index > upgrades.length) {
-            System.out.println(RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
+            System.out.println(RED_TEXT + "Uh oh! Your input is invalid. Please try again." + RESET);
         }
+
+        // check if there is enough money in balance
 
         if (userUpgradeLvl[index] == 5) {
             System.out.println(RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
@@ -36,14 +38,15 @@ public class Upgrades {
         }
     }
 
-    private String printUpgrades() {
+    // prints the upgrades menu
+    public String printUpgrades() {
         StringBuilder str = new StringBuilder();
         str.append(CYAN_TEXT + "\nUpgrades:" + RESET);
 
         // looping through all the values
         for (int i = 0; i < upgrades.length; i++) {
-            str.append("\n" + (i + 1) + ") " + upgrades[i] + " - $" + upgradeCosts[i] + " (" + userUpgradeLvl[i] + "/"
-                    + MAX_UPGRADE_LVL + ")");
+            str.append("\n" + (i + 1) + ") " + upgrades[i] + CYAN_TEXT + " (" + userUpgradeLvl[i] + "/"
+                    + MAX_UPGRADE_LVL + ")" + RESET + " - $" + upgradeCosts[i]);
         }
 
         return str.toString();
