@@ -1,8 +1,6 @@
 public class Upgrades {
     // color terminal output variables
-    public static final String GREEN_TEXT = "\u001B[32m";
     public static final String RED_TEXT = "\u001B[31m";
-    public static final String BLUE_TEXT = "\u001B[34m";
     public static final String RESET = "\u001B[0m";
 
     // list of upgrades and other upgrade attributes
@@ -24,9 +22,17 @@ public class Upgrades {
         }
     }
 
-    private int buyUpgrade(int index) {
+    private void buyUpgrade(int index) {
         if (userUpgradeLvl[index] == 5) {
-            Sysgetm
+            System.out.println(upgrades[index] + " is already at the max level.");
         }
+        else {
+            userUpgradeLvl[index]++;
+            // how am i supposed to take the cost out of balance
+        }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
