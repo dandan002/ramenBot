@@ -1,3 +1,6 @@
+import java.util.*;
+import java.time.*;
+
 public class User {
     //basic variables
     private String userName;
@@ -48,8 +51,12 @@ public class User {
     }
 
     public void levelUp() {
-            level++;
-            multiplier += 0.2;
-            upgradesDone = 0;
+        level++;
+        multiplier += 0.2;
+        upgradesDone = 0;
+    }
+
+    public void changeWorkflow() {
+        currentWorkflow = new FunctionsA;
     }
 }
