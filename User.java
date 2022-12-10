@@ -9,7 +9,6 @@ public class User {
     private FunctionsA currentWorkflow;
     private double currentMultiplier;
     private double balance;
-
     //level progress checking variables
     private int upgradesDone;
 
