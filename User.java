@@ -50,13 +50,19 @@ public class User {
         return currentBalance;
     }
 
+    //levels up the user
     public void levelUp() {
         level++;
         multiplier += 0.2;
         upgradesDone = 0;
     }
 
+    //changes user workflow
     public void changeWorkflow() {
         currentWorkflow = new FunctionsA;
+    }
+
+    public void changeBalance(double balance) {
+        this.balance = balance;
     }
 }
