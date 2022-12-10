@@ -13,8 +13,11 @@ public class Upgrades {
 
     // instance variable holding user upgrade levels
     private int[] userUpgradeLvl;
+    private User user;
 
-    public Upgrades() {
+    public Upgrades(User user) {
+        this.user = user;
+        
         userUpgradeLvl = new int[upgrades.length];
 
         for (int i = 0; i < upgrades.length; i++) {
