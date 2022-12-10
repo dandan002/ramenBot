@@ -30,6 +30,10 @@ public class Menu {
         return userMenu[index];
     }
 
+    public String returnAllItem(int index) {
+        return menuItems[index];
+    }
+
     // change item on menu, input is user menu index and all items index
     public void changeItem(int ogIndex, int newIndex) {
 
