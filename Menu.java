@@ -27,7 +27,24 @@ public class Menu {
 
     // change item on menu, input is user menu index and all items index
     public void changeItem(int ogIndex, int newIndex) {
-        menuItems[ogIndex] = menuItems[newIndex];
+
+        // checking user input
+        boolean ogValid = ogIndex > userMenu.length || ogIndex < 0;
+        boolean newValid = newIndex > menuItems.length || newIndex < 0;
+
+        // printing error message
+        if (ogValid || newValid) {
+            System.out.println("Uh oh! Menu item number is not valid. Please try again.");
+        }
+
+        else {
+            userMenu[ogIndex] = menuItems[newIndex];
+        }
+    }
+
+    public void displayMenu() {
+        StringBuilder menu = new StringBuilder();
+        menu.append()
     }
 
     public static void main(String[] args) {

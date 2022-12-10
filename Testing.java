@@ -14,6 +14,8 @@ public class Testing {
             System.out.println(item);
         }
 
+        test.changeItem(1, 17); // should print an error statement
+
     }
 }
 
