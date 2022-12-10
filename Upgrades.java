@@ -28,12 +28,13 @@ public class Upgrades {
         }
 
         // check if there is enough money in balance
-
-        if (userUpgradeLvl[index] == 5) {
-            System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
-        } else {
-            userUpgradeLvl[index]++;
-            // how am i supposed to take the cost out of balance
+        else {
+            if (userUpgradeLvl[index] == 5) {
+                System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
+            } else {
+                userUpgradeLvl[index]++;
+                // how am i supposed to take the cost out of balance
+            }
         }
     }
 
