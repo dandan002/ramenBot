@@ -52,6 +52,7 @@ public class Menu {
             System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET);
         }
         else {
+        // checking if item is already in menu
         for (int i = 0; i < userMenu.length; i++) {
             if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
                 System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
@@ -60,16 +61,17 @@ public class Menu {
                  continue;
                  }
             }
-            
+            // changing menu item
             userMenu[ogIndex] = MENU_ITEMS[newIndex];
         }
     }
     
-
+    // returns user menu as a String
     public String displayMenu() {
         StringBuilder menu = new StringBuilder();
         menu.append(GREEN_TEXT + "\nYour Menu:" + RESET);
 
+        // looping through all the values
         for (int i = 0; i < userMenu.length; i++) {
             menu.append("\n" + (i + 1) + ") " + userMenu[i]);
         }
@@ -77,10 +79,12 @@ public class Menu {
         return menu.toString();
     }
 
+    // returns all possible menu items as a String
     public String displayAll() {
         StringBuilder str = new StringBuilder();
         str.append(BLUE_TEXT + "\nPossible Items:" + RESET);
 
+        // looping through all the values
         for (int i = 0; i < MENU_ITEMS.length; i++) {
             str.append("\n" + (i + 1) + ") " + MENU_ITEMS[i]);
         }
