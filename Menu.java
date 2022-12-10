@@ -1,13 +1,13 @@
 public class Menu {
     // color terminal output variables
-    public static final String GREEN_BG = "\u001B[42m";
     public static final String GREEN_TEXT = "\u001B[32m";
     public static final String RED_TEXT = "\u001B[31m";
     public static final String BLUE_TEXT = "\u001B[34m";
     public static final String RESET = "\u001B[0m";
 
     // defining all possible menu items
-    private final String[] MENU_ITEMS = {"Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen", "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl"};
+    private final String[] MENU_ITEMS = { "Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen",
+            "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl" };
 
     private String[] userMenu; // holds user menu
 
@@ -21,15 +21,15 @@ public class Menu {
         }
     }
 
-    // returns all possible menu items (as an array) 
+    // returns all possible menu items (as an array)
     public String[] returnAll() {
         return MENU_ITEMS;
     }
-    
+
     // returns user menu as an array
     public String[] returnMenu() {
         return userMenu;
-    }    
+    }
 
     // returns user menu item at user-specified index
     public String returnMenuItem(int index) {
@@ -50,22 +50,21 @@ public class Menu {
         // printing error message
         if (ogValid || newValid) {
             System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET);
-        }
-        else {
-        // checking if item is already in menu
-        for (int i = 0; i < userMenu.length; i++) {
-            if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
-                System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex] + " is already on your menu. Please try again." + RESET);
-            }
-            else {
-                 continue;
-                 }
+        } else {
+            // checking if item is already in menu
+            for (int i = 0; i < userMenu.length; i++) {
+                if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
+                    System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex]
+                            + " is already on your menu. Please try again." + RESET);
+                } else {
+                    continue;
+                }
             }
             // changing menu item
             userMenu[ogIndex] = MENU_ITEMS[newIndex];
         }
     }
-    
+
     // returns user menu as a String
     public String displayMenu() {
         StringBuilder menu = new StringBuilder();
