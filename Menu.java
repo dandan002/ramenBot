@@ -31,14 +31,6 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        Menu test = new Menu();
-
-        test.changeItem(1, 5);
-        
-        for (int i = 0; i < 5; i++) {
-            String item = test.returnMenuItem(i);
-            System.out.println(item);
-        }
 
     }
 }
