@@ -1,6 +1,6 @@
 public class Functions {
     // color terminal output variables
-    public static final String BLUE_TEXT = "\u001B[34m";
+    public static final String PURPLE_TEXT = "\u001B[35m";
     public static final String RESET = "\u001B[0m";
 
     // list of commands and their descriptions
@@ -12,10 +12,10 @@ public class Functions {
     // displays a help menu
     public static String help() {
         StringBuilder str = new StringBuilder();
-        str.append(BLUE_TEXT + "\nList of Commands" + RESET);
+        str.append(PURPLE_TEXT + "\nList of Commands" + RESET);
         // print out each command and description
         for (int i = 0; i < commands.length; i++) {
-            str.append("\n" + BLUE_TEXT + commands[i] + RESET + " - " + commandDesc[i]);
+            str.append("\n" + PURPLE_TEXT + commands[i] + RESET + " - " + commandDesc[i]);
         }
 
         return str.toString();
