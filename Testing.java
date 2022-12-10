@@ -24,7 +24,8 @@ public class Testing {
         System.out.println(Functions.help());
 
         // testing Upgrades
-        Upgrades temp = new Upgrades();
+        User testUser = new User("Kai");
+        Upgrades temp = new Upgrades(testUser);
 
         // print original state of upgradfes
         System.out.println(temp.printUpgrades());
