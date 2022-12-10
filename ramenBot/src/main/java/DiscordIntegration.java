@@ -1,6 +1,8 @@
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -13,6 +15,11 @@ public class DiscordIntegration extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        System.out.println("A message sent.");
+        Member user = event.getMember();
+        System.out.println(user.getId());
+        if (user.getId().equals("350785988718493706")) {
+            TextChannel hi = event.getGuildChannel().asTextChannel();
+            hi.sendMessage("stfu kai").queue();
+        }
     }
 }
