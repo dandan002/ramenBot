@@ -46,7 +46,7 @@ public class Upgrades {
                     + MAX_UPGRADE_LVL + ")");
         }
 
-        return menu.toString();
+        return str.toString();
     }
 
     public static void main(String[] args) {
