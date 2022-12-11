@@ -13,7 +13,7 @@ public class Functions {
     // displays a help menu
     public static String help() {
         StringBuilder str = new StringBuilder();
-        str.append(PURPLE_TEXT + "\nList of Commands" + RESET);
+        str.append(PURPLE_TEXT + "\n** List of Commands **" + RESET);
         // print out each command and description
         for (int i = 0; i < commands.length; i++) {
             str.append("\n" + PURPLE_TEXT + commands[i] + RESET + " - " + commandDesc[i]);
