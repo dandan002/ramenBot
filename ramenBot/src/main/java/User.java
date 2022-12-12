@@ -14,6 +14,7 @@ public class User {
         userLevel = 1;
         workReady = true;
         currentWorkflow = new Functions();
+        upgradesDone = 0;
     }
 
     //get function for username
@@ -60,5 +61,9 @@ public class User {
 
     public void changeBalance(double balance) {
         this.balance = balance;
+    }
+
+    public void changeUpgrades() {
+        this.upgradesDone++;
     }
 }
