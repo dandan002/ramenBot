@@ -43,7 +43,7 @@ public class Menu {
     }
 
     // change item on menu, input is user menu index and all items index
-    public void changeItem(int ogIndex, int newIndex) {
+    public boolean changeItem(int ogIndex, int newIndex) {
 
         // checking user input
         boolean ogValid = ogIndex > userMenu.length || ogIndex < 0;
@@ -56,14 +56,16 @@ public class Menu {
             // checking if item is already in menu
             for (int i = 0; i < userMenu.length; i++) {
                 if (userMenu[i].equals(MENU_ITEMS[newIndex])) {
-                    System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex]
-                            + " is already on your menu. Please try again." + RESET);
+                    /** System.out.println("\n" + RED_TEXT + MENU_ITEMS[newIndex]
+                            + " is already on your menu. Please try again." + RESET); **/
+                    return false;
                 } else {
                     continue;
                 }
             }
             // changing menu item
             userMenu[ogIndex] = MENU_ITEMS[newIndex];
+            return true;
         }
     }
 
