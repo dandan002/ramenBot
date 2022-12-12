@@ -4,7 +4,7 @@ public class User {
     private int userLevel;
     private boolean workReady;
     private FunctionsA currentWorkflow;
-    private double currentMultiplier;
+    private double multiplier;
     private double balance;
     //level progress checking variables
     private int upgradesDone;
@@ -38,7 +38,7 @@ public class User {
 
     //get function for current score multiplier
     public double getCurrentMultiplier() {
-        return currentMultiplier;
+        return multiplier;
     }
 
     //get function for current balance
@@ -48,14 +48,14 @@ public class User {
 
     //levels up the user
     public void levelUp() {
-        level++;
+        userLevel++;
         multiplier += 0.2;
         upgradesDone = 0;
     }
 
     //changes user workflow
     public void changeWorkflow() {
-        currentWorkflow = new FunctionsA;
+        currentWorkflow = new FunctionsA();
     }
 
     public void changeBalance(double balance) {
