@@ -51,7 +51,8 @@ public class Menu {
 
         // printing error message
         if (ogValid || newValid) {
-            System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET);
+            /** System.out.println(RED_TEXT + "\nUh oh! Item number is not valid. Please try again." + RESET); **/
+            return false;
         } else {
             // checking if item is already in menu
             for (int i = 0; i < userMenu.length; i++) {
