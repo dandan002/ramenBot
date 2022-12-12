@@ -47,6 +47,10 @@ public class User {
         return balance;
     }
 
+    public int getUpgradesDone() {
+        return upgradesDone;
+    }
+
     //levels up the user
     public void levelUp() {
         userLevel++;
