@@ -25,24 +25,28 @@ public class Upgrades {
         }
     }
 
-    public void buyUpgrade(int index) {
+    public boolean buyUpgrade(int index) {
         // checking if user input is valid
         if (index < 0 || index > upgrades.length) {
-            System.out.println(RED_TEXT + "\nUh oh! Your input is invalid. Please try again." + RESET);
+            // System.out.println(RED_TEXT + "\nUh oh! Your input is invalid. Please try again." + RESET);
+            return false;
         }
         // checking if user has enough money to buy upgrade
         if(user.getBalance() < upgradeCosts[index]) {
-            System.out.println(RED_TEXT + "\nYou do not have enough money to buy this upgrade." + RESET);
+            // System.out.println(RED_TEXT + "\nYou do not have enough money to buy this upgrade." + RESET);
+            return false;
         }
         else {
             // check if upgrade level is maxed
             if (userUpgradeLvl[index] == 5) {
-                System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
+                // System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
+                return false;
             } else {
                 userUpgradeLvl[index]++;
                 user.changeBalance(user.getBalance() - upgradeCosts[index]); // changing user balance
             }
         }
+        return true;
     }
 
     // prints the upgrades menu
