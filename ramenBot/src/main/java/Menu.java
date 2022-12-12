@@ -65,8 +65,8 @@ public class Menu {
             }
             // changing menu item
             userMenu[ogIndex] = MENU_ITEMS[newIndex];
-            return true;
         }
+        return true;
     }
 
     // returns user menu as a String
