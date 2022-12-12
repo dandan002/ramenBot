@@ -43,7 +43,7 @@ public class User {
 
     //get function for current balance
     public double getBalance() {
-        return currentBalance;
+        return balance;
     }
 
     //levels up the user
