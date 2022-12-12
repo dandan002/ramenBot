@@ -13,8 +13,9 @@ public class User {
         userName = name;
         userLevel = 1;
         workReady = true;
-        currentWorkflow = new Functions();
+        //currentWorkflow = new Functions();
         upgradesDone = 0;
+        balance = 100;
     }
 
     //get function for username

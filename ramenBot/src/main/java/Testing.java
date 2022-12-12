@@ -22,7 +22,7 @@ public class Testing {
 
         // testing Functions
         System.out.println(Functions.help());
-        /**
+        
         // testing Upgrades
         User testUser = new User("Kai");
         Upgrades temp = new Upgrades(testUser);
@@ -45,6 +45,6 @@ public class Testing {
 
         temp.buyUpgrade(2); // should print out error message
         temp.buyUpgrade(17); // should print out different error message
-         **/
+        
     }
 }

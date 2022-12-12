@@ -32,7 +32,7 @@ public class Upgrades {
             return false;
         }
         // checking if user has enough money to buy upgrade
-        if(user.getBalance() < upgradeCosts[index]) {
+        else if(user.getBalance() < upgradeCosts[index]) {
             // System.out.println(RED_TEXT + "\nYou do not have enough money to buy this upgrade." + RESET);
             return false;
         }
