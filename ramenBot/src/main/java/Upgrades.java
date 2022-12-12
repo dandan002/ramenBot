@@ -42,7 +42,8 @@ public class Upgrades {
                 // System.out.println("\n" + RED_TEXT + upgrades[index] + " is already at the max level." + RESET);
                 return false;
             } else {
-                userUpgradeLvl[index]++;
+                userUpgradeLvl[index]++; // increment level of upgrade
+                user.changeUpgrades(); // increment tracker for total number of upgrades
                 user.changeBalance(user.getBalance() - upgradeCosts[index]); // changing user balance
             }
         }
