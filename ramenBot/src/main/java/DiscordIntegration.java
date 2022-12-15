@@ -11,7 +11,7 @@ public class DiscordIntegration extends ListenerAdapter {
     // Sets up and registers JDA listener
     public static void main(String[] args) throws Exception {
         JDA api = JDABuilder
-                .createDefault("MTA1MDUzNjA0MTQxNDY2MDE1Nw.GVZieL.xqBRrVEE24VYBsHquySpHvHPYXy6616-GA2jgI",
+                .createDefault(<DISCORD_TOKEN_REDACTED>,
                         GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .addEventListeners(new DiscordIntegration()).setActivity(Activity.playing("COS 126")).build();
     }
