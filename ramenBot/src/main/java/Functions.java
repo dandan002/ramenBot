@@ -1,25 +1,93 @@
+import java.util.ArrayList;
+
+import static java.lang.System.currentTimeMillis;
+
 public class Functions {
     // color terminal output variables
     public final String PURPLE_TEXT = "\u001B[35m";
     public final String RESET = "\u001B[0m";
 
     // list of commands and their descriptions
-    private String[] commands = {"Work", "Upgrade", "Balance", "Menu", "Help", "Cancel"};
+    private String[] commands = {"work", "upgrade", "balance", "menu", "help", "cancel"};
     private String[] commandDesc = {"Work for money", "View all purchasable upgrades",
             "View user balance",
             "View menu options and user menu", "View all commands for Ramen Bot",
             "Cancel the command"};
 
+    // list of menu items
+    private final String[] MENU_ITEMS = {"Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen",
+            "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl"};
+
+    // upgrades
+    private final String[] upgrades = {"Instagram Shoutout", "New Paint", "Sign Flipper", "Youtube Ad",
+            "New Furniture", "Better Appliances"};
+    private final int[] upgradeCosts = {10, 20, 30, 50, 100, 250};
+    private final int MAX_UPGRADE_LVL = 5;
+
+    // passed database connection variable.
+    private MongoConnection user;
+    private Menu menu;
+
+    public Functions(MongoConnection current) {
+        user = current;
+        menu = new Menu();
+    }
+
     // displays a help menu
-    public String help() {
+    public String help(String prefix) {
         StringBuilder str = new StringBuilder();
-        str.append(PURPLE_TEXT + "\n** List of Commands **" + RESET);
+        str.append("\n** List of Commands **\n");
         // print out each command and description
         for (int i = 0; i < commands.length; i++) {
-            str.append("\n" + PURPLE_TEXT + commands[i] + RESET + " - " + commandDesc[i]);
+            str.append(prefix + commands[i] + " - " + commandDesc[i] + "\n");
         }
-
         return str.toString();
+    }
+
+
+    // earn a random amount of money when you work
+    public String work() {
+        double timeElapsed = (currentTimeMillis() - user.getLastTime());
+        double oneHr = 3600000;
+        if (timeElapsed < oneHr) {
+            int minsLeft = (int) ((oneHr - timeElapsed) / 60000);
+            return "You need to wait " + minsLeft + " minutes!";
+        }
+        int bowlsSold = (int) (Math.random() * 21 * user.getMultiplier());
+        double moneyEarned = bowlsSold * 12;
+        user.changeBalance(user.getBalance() + moneyEarned);
+        user.changeRamenCooked(user.getRamenCooked() + bowlsSold);
+        user.markTime();
+        return "You sold " + bowlsSold + " bowls of ramen and earned $" + moneyEarned;
+    }
+
+    // level up
+    public String levelUp() {
+        int newLevel = user.getUserLevel() + 1;
+        double newMultiplier = user.getMultiplier() + 0.2;
+        user.changeRamenCooked(0);
+        user.changeMultiplier(newMultiplier);
+        user.changeLevel(newLevel);
+        int maxCook = (int) (newMultiplier * 21);
+        return "You leveled up to lvl. " + newLevel + "! You can now cook a max of " +
+                maxCook + " bowls " + "a day!";
+    }
+
+    // return balance
+    public String balance() {
+        return "You have $" + user.getBalance() + " in the bank!";
+    }
+
+    // view menu
+    public String menu() {
+        StringBuilder menu = new StringBuilder();
+        menu.append("\n** Your Menu **");
+        // looping through all the values
+        ArrayList<String> currentMenu = user.getMenu();
+        for (int i = 0; i < currentMenu.size(); i++) {
+            menu.append("\n" + (i + 1) + ") " + currentMenu.get(i));
+        }
+        return menu.toString();
     }
 
     public static void main(String[] args) {
