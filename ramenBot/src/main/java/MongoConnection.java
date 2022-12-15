@@ -18,24 +18,22 @@ import java.util.ArrayList;
 import static com.mongodb.client.model.Filters.eq;
 import static java.lang.System.currentTimeMillis;
 
-// NOTE: It would be customary to make the user, collection, and database
-// reusable class variables, but MongoDB does not allow for multiple document
-// updates in a single client instance.
+// NOTE: It would be customary to make the user, collection, and database reusable class variables,
+// but MongoDB does not allow for multiple document updates in a single client instance.
 public class MongoConnection {
-    private final String id = "<MONGO KEY REDACTED>"; // holds MongoDB token
-    private final String guildId; // holds server ID
-    private final String userId; // holds Discord user ID
+    private final String id = "mongodb+srv://dandan010:dkssud010@cluster0." +
+            "tswr0hm.mongodb.net/?retryWrites=true&w=majority";
+    private final String guildId;
+    private final String userId;
 
-    // connect to database and check users
+    // connect to database and check users.
     public MongoConnection(String USER_ID, String SERVER_ID) {
         guildId = SERVER_ID;
         userId = USER_ID;
         checkUser(USER_ID, SERVER_ID);
     }
 
-    // checks if a specific user and guild exists in the database and
-    // creates one if not
-    // takes user and server Discord IDs as input
+    // checks if a specific user and guild exists in the database and creates one if not
     public void checkUser(String USER_ID, String SERVER_ID) {
         // check if collection (server) exists
         MongoClient mongoClient = MongoClients.create(id);
@@ -51,7 +49,7 @@ public class MongoConnection {
         if (!colExists) {
             db.createCollection(SERVER_ID);
         }
-        // check if user (document) exists and create if not
+        //check if user (document) exists and create if not
         MongoCollection<Document> col = db.getCollection(SERVER_ID);
         boolean exists = col.countDocuments(eq("_id", USER_ID)) > 0;
         ArrayList<String> menu = new ArrayList<>();
@@ -59,7 +57,6 @@ public class MongoConnection {
         menu.add("Seafood Ramen");
         menu.add("Tonkotsu Ramen");
         menu.add("Miso Ramen");
-        menu.add("Spicy Miso Ramen");
 
         ArrayList<Integer> upgrades = new ArrayList<>();
         upgrades.add(1);
@@ -71,17 +68,15 @@ public class MongoConnection {
 
         if (!exists) {
             col.insertOne(new Document()
-                                  .append("_id", USER_ID)
-                                  .append("prefix", "!")
-                                  .append("userLevel", 1)
-                                  .append("workReady", true)
-                                  .append("currentWorkflow", "normal")
-                                  .append("multiplier", 1.0)
-                                  .append("balance", 100.0)
-                                  .append("lastTime", currentTimeMillis())
-                                  .append("ramenCooked", 0)
-                                  .append("menu", menu)
-                                  .append("upgrades", upgrades));
+                    .append("_id", USER_ID)
+                    .append("prefix", "!")
+                    .append("userLevel", 1)
+                    .append("multiplier", 1.0)
+                    .append("balance", 100.0)
+                    .append("lastTime", 1000000000000L)
+                    .append("ramenCooked", 0)
+                    .append("menu", menu)
+                    .append("upgrades", upgrades));
         }
         mongoClient.close();
     }
@@ -90,8 +85,7 @@ public class MongoConnection {
     public int getRamenCooked() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         int bowls = user.getInteger("ramenCooked");
         mongoClient.close();
         return bowls;
@@ -101,8 +95,7 @@ public class MongoConnection {
     public String getPrefix() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         String prefix = user.getString("prefix");
         mongoClient.close();
         return prefix;
@@ -112,8 +105,7 @@ public class MongoConnection {
     public ArrayList<String> getMenu() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         ArrayList<String> menu = (ArrayList<String>) user.get("menu");
         mongoClient.close();
         return menu;
@@ -123,8 +115,7 @@ public class MongoConnection {
     public double getLastTime() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         double milis = (double) user.getLong("lastTime");
         mongoClient.close();
         return milis;
@@ -134,41 +125,17 @@ public class MongoConnection {
     public int getUserLevel() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         int level = user.getInteger("userLevel");
         mongoClient.close();
         return level;
-    }
-
-    // get workReady status
-    public boolean getWorkStatus() {
-        MongoClient mongoClient = MongoClients.create(id);
-        Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
-        boolean work = user.getBoolean("workReady");
-        mongoClient.close();
-        return work;
-    }
-
-    // get workflow
-    public String getCurrentWorkflow() {
-        MongoClient mongoClient = MongoClients.create(id);
-        Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
-        String workflow = user.getString("currentWorkflow");
-        mongoClient.close();
-        return workflow;
     }
 
     // get balance
     public double getBalance() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         double bal = user.getDouble("balance");
         mongoClient.close();
         return bal;
@@ -178,53 +145,68 @@ public class MongoConnection {
     public double getMultiplier() {
         MongoClient mongoClient = MongoClients.create(id);
         Document user = mongoClient.getDatabase("RancidRamen").
-                                   getCollection(guildId).
-                                   find(eq("_id", userId)).first();
+                getCollection(guildId).find(eq("_id", userId)).first();
         double mult = user.getDouble("multiplier");
         mongoClient.close();
         return mult;
     }
 
+    // unlock Ramen
+    public void unlockRamen(String add) {
+        MongoClient mongoClient = MongoClients.create(id);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").
+                getCollection(guildId);
+        Document user = col.find(eq("_id", userId)).first();
+        ArrayList<String> ramen = getMenu();
+        ramen.add(add);
+        col.updateOne(user, Updates.set("menu", ramen));
+        mongoClient.close();
+    }
+
+    // get current upgrade levels
+    public ArrayList<Integer> getUpgradeLevels() {
+        MongoClient mongoClient = MongoClients.create(id);
+        Document user = mongoClient.getDatabase("RancidRamen").
+                getCollection(guildId).find(eq("_id", userId)).first();
+        ArrayList<Integer> upgrades = (ArrayList<Integer>) user.get("upgrades");
+        mongoClient.close();
+        return upgrades;
+    }
+
+    // upgrade
+    public void upgrade(int index) {
+        MongoClient mongoClient = MongoClients.create(id);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").
+                getCollection(guildId);
+        Document user = col.find(eq("_id", userId)).first();
+        ArrayList<Integer> upgrades = getUpgradeLevels();
+        upgrades.set(index, upgrades.get(index) + 1);
+        col.updateOne(user, Updates.set("upgrades", upgrades));
+        mongoClient.close();
+    }
+
     // marks last work time
     public void markTime() {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("lastTime", currentTimeMillis()));
         mongoClient.close();
     }
 
-    // changes user workflow
-    public void changeWorkflow() {
-        MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
-        Document user = col.find(eq("_id", userId)).first();
-        if (getCurrentWorkflow().equals("normal")) {
-            col.updateOne(user, Updates.set("currentWorkflow", "vc"));
-        }
-        else {
-            col.updateOne(user, Updates.set("currentWorkflow", "normal"));
-        }
-        mongoClient.close();
-    }
-
-    // set prefix, takes prefix as input
+    //set prefix
     public void setPrefix(String pref) {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("prefix", pref));
         mongoClient.close();
     }
 
-    // changes user balance
+    //changes user balance
     public void changeBalance(double balance) {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("balance", balance));
         mongoClient.close();
@@ -233,8 +215,7 @@ public class MongoConnection {
     // changes user level
     public void changeLevel(int level) {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("userLevel", level));
         mongoClient.close();
@@ -243,8 +224,7 @@ public class MongoConnection {
     // changes multiplier
     public void changeMultiplier(double multi) {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("multiplier", multi));
         mongoClient.close();
@@ -253,8 +233,7 @@ public class MongoConnection {
     // sets number of ramen cooked
     public void changeRamenCooked(int cookedRamen) {
         MongoClient mongoClient = MongoClients.create(id);
-        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
-                                                   .getCollection(guildId);
+        MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen").getCollection(guildId);
         Document user = col.find(eq("_id", userId)).first();
         col.updateOne(user, Updates.set("ramenCooked", cookedRamen));
         mongoClient.close();
@@ -262,20 +241,42 @@ public class MongoConnection {
 
     public String toString() {
         return userId;
-
     }
 
     public static void main(String[] args) {
-        MongoConnection hi = new MongoConnection("hi", "132453");
-        System.out.println(hi.getPrefix());
-        hi.changeWorkflow();
-        hi.setPrefix("?");
-        System.out.println(hi);
-        hi.changeBalance(101.00);
-        hi.getMenu();
-        System.out.println(hi.getBalance());
-        System.out.println(hi.getCurrentWorkflow());
-        System.out.println(hi.getMultiplier());
-        System.out.println(hi.getWorkStatus());
+        MongoConnection testUser = new MongoConnection("testUser", "testServer");
+        System.out.println(testUser.getRamenCooked()); // print 0
+        System.out.println(testUser.getPrefix()); // print !
+        System.out.println(testUser.getMenu()); // prints [Beef Ramen, Seafood Ramen, Tonkotsu Ramen, Miso Ramen]
+        System.out.println(testUser.getLastTime()); // prints 1.0E12
+        System.out.println(testUser.getUserLevel()); // prints 1
+        System.out.println(testUser.getBalance()); // prints 100.0
+        System.out.println(testUser.getMultiplier()); // prints 1.0
+        System.out.println(testUser.getUpgradeLevels()); // prints [1, 1, 1, 1, 1, 1]
+        System.out.println(testUser); // prints testUser
+
+        testUser.unlockRamen("hi");
+        System.out.println(testUser.getMenu()); // prints [Beef Ramen, Seafood Ramen, Tonkotsu Ramen, Miso Ramen, hi]
+
+        testUser.upgrade(0);
+        System.out.println(testUser.getUpgradeLevels()); // prints [2, 1, 1, 1, 1, 1]
+
+        testUser.markTime();
+        System.out.println(testUser.getLastTime()); // prints current system time (in miliseconds)
+
+        testUser.setPrefix("?");
+        System.out.println(testUser.getPrefix()); // prints ?
+
+        testUser.changeBalance(50.0);
+        System.out.println(testUser.getBalance()); // prints 50.0
+
+        testUser.changeLevel(5);
+        System.out.println(testUser.getUserLevel()); // prints 5
+
+        testUser.changeMultiplier(1.50);
+        System.out.println(testUser.getMultiplier()); // prints 1.5
+
+        testUser.changeRamenCooked(10);
+        System.out.println(testUser.getRamenCooked()); // prints 10
     }
 }
