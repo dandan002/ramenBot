@@ -20,11 +20,11 @@ import static java.lang.System.currentTimeMillis;
 // reusable class variables, but MongoDB does not allow for multiple document
 // updates in a single client instance.
 public class MongoConnection {
-    private final String id = "<MONGO KEY REDACTED>";
-    private final String guildId;
-    private final String userId;
+    private final String id = "<MONGO KEY REDACTED>"; // holds MongoDB token
+    private final String guildId; // holds server ID
+    private final String userId; // holds Discord user ID
 
-    // connect to database and check users.
+    // connect to database and check users
     public MongoConnection(String USER_ID, String SERVER_ID) {
         guildId = SERVER_ID;
         userId = USER_ID;
@@ -33,6 +33,7 @@ public class MongoConnection {
 
     // checks if a specific user and guild exists in the database and
     // creates one if not
+    // takes user and server Discord IDs as input
     public void checkUser(String USER_ID, String SERVER_ID) {
         // check if collection (server) exists
         MongoClient mongoClient = MongoClients.create(id);
@@ -207,7 +208,7 @@ public class MongoConnection {
         mongoClient.close();
     }
 
-    // set prefix
+    // set prefix, takes prefix as input
     public void setPrefix(String pref) {
         MongoClient mongoClient = MongoClients.create(id);
         MongoCollection<Document> col = mongoClient.getDatabase("RancidRamen")
