@@ -35,7 +35,7 @@ public class Functions {
     // displays a help menu
     public String help(String prefix) {
         StringBuilder str = new StringBuilder();
-        str.append("\n** List of Commands **\n");
+        str.append("\n**List of Commands**\n");
         // print out each command and description
         for (int i = 0; i < commands.length; i++) {
             str.append(prefix + commands[i] + " - " + commandDesc[i] + "\n");
@@ -79,7 +79,7 @@ public class Functions {
     // view menu
     public String menu() {
         StringBuilder menu = new StringBuilder();
-        menu.append("\n** Your Menu **");
+        menu.append("\n**Your Menu**");
         // looping through all the values
         ArrayList<String> currentMenu = user.getMenu();
         for (int i = 0; i < currentMenu.size(); i++) {
