@@ -22,8 +22,7 @@ import static java.lang.System.currentTimeMillis;
 // reusable class variables, but MongoDB does not allow for multiple document 
 // updates in a single client instance.
 public class MongoConnection {
-    private final String id = "mongodb+srv://dandan010:dkssud010@cluster0." +
-            "tswr0hm.mongodb.net/?retryWrites=true&w=majority";
+    private final String id = "MONGODB DATABASE KEY";
     private final String guildId;
     private final String userId;
 
