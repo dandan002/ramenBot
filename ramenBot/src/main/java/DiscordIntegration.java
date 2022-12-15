@@ -1,3 +1,9 @@
+/******************************************************************************
+ *
+ * This program does something
+ *
+ *****************************************************************************/
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -12,15 +18,19 @@ public class DiscordIntegration extends ListenerAdapter {
     public static void main(String[] args) throws Exception {
         JDA api = JDABuilder
                 .createDefault(<DISCORD_TOKEN_REDACTED>,
-                        GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
-                .addEventListeners(new DiscordIntegration()).setActivity(Activity.playing("COS 126")).build();
+        GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, 
+                GatewayIntent.GUILD_MEMBERS)
+                .addEventListeners(new DiscordIntegration()).
+                setActivity(Activity.playing("COS 126")).build();
     }
 
     // Server bot setup
     public void whenJoiningServer(GuildJoinEvent event) {
         TextChannel channel = event.getGuild().getTextChannels().get(0);
-        channel.sendMessage("Thank you for inviting RancidRamen! Please type \"!setPrefix <prefix>\" to " +
-                "set custom prefixes and type \"!help\" for commands and instructions.");
+        channel.sendMessage("Thank you for inviting RancidRamen! " + 
+                                    "Please type \"!setPrefix <prefix>\" to " +
+                                    "set custom prefixes and type \"!help\" " + 
+                                    "for commands and instructions.");
     }
 
     // check message
@@ -35,7 +45,8 @@ public class DiscordIntegration extends ListenerAdapter {
             String serverId = event.getGuild().getId();
 
             // check if user exists; if not, add.
-            MongoConnection mongoConnection = new MongoConnection(userId, serverId);
+            MongoConnection mongoConnection = 
+                    new MongoConnection(userId, serverId);
             // check prefix and workflow
             String prefix = mongoConnection.getPrefix();
             Functions workflow = new Functions(mongoConnection);
@@ -51,7 +62,8 @@ public class DiscordIntegration extends ListenerAdapter {
             // work
             if (message.equals(prefix + "work")) {
                 currentChannel.sendMessage(workflow.work()).queue();
-                if (mongoConnection.getRamenCooked() > ((int) (100 * mongoConnection.getUserLevel() * 0.75))) {
+                if (mongoConnection.getRamenCooked() > ((int) 
+                        (100 * mongoConnection.getUserLevel() * 0.75))) {
                     System.out.println("levelup confirmed");
                     currentChannel.sendMessage(workflow.levelUp()).queue();
                 }
@@ -65,7 +77,7 @@ public class DiscordIntegration extends ListenerAdapter {
             // display menu
             if (message.equals(prefix + "menu")) {
                 currentChannel.sendMessage(workflow.menu()).queue();
-            }    
+            }
         }
     }
 }
