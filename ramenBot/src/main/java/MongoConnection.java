@@ -1,6 +1,8 @@
 /******************************************************************************
  *
- * Multi-line comment explaning what the program does
+ * This program connects to the MongoDB Atlas database and creates users
+ * with various attributes like balance, user level, and number of ramen
+ * bowls cooked in a shift.
  *
  *****************************************************************************/
 
