@@ -1,10 +1,10 @@
 
-/**************************************************************************************
- * 
- * This program contains the code behind commands like !balance and !work that users
- * call in Discord.
- * 
- **************************************************************************************/
+/******************************************************************************
+ *
+ * This program contains the code behind commands like !balance and !work that
+ * users call in Discord.
+ *
+ *****************************************************************************/
 
 import java.util.ArrayList;
 
@@ -12,16 +12,19 @@ import static java.lang.System.currentTimeMillis;
 
 public class Functions {
     // list of commands and their descriptions
-    private final String[] commands = { "work", "upgrade", "balance", "menu", "help",
-            "cancel" };
+    private final String[] commands = { "work", "upgrade", "balance", "menu", 
+                                        "help", "cancel" };
     private final String[] commandDesc = { "Work for money",
-            "View all purchasable upgrades", "View user balance",
-            "View menu options and user menu", "View all commands for Ramen Bot",
-            "Cancel the command" };
+                                           "View all purchasable upgrades", 
+                                           "View user balance",
+                                           "View menu options and user menu", 
+                                           "View all commands for Ramen Bot",
+                                           "Cancel the command" };
 
     // upgrades
     private final String[] upgrades = { "Instagram Shoutout", "New Paint",
-            "Sign Flipper", "Youtube Ad", "New Furniture", "Better Appliances" };
+                                        "Sign Flipper", "Youtube Ad", 
+                                        "New Furniture", "Better Appliances" };
     private final int[] upgradeCosts = { 10, 20, 30, 50, 100, 250 };
     private final int MAX_UPGRADE_LVL = 5;
 
@@ -56,7 +59,8 @@ public class Functions {
         user.changeBalance(user.getBalance() + moneyEarned);
         user.changeRamenCooked(user.getRamenCooked() + bowlsSold);
         user.markTime();
-        return "You sold " + bowlsSold + " bowls of ramen and earned $" + moneyEarned;
+        return "You sold " + bowlsSold + " bowls of ramen and earned $" 
+                + moneyEarned;
     }
 
     // level up
@@ -67,8 +71,8 @@ public class Functions {
         user.changeMultiplier(newMultiplier);
         user.changeLevel(newLevel);
         int maxCook = (int) (newMultiplier * 21);
-        return "You leveled up to lvl. " + newLevel + "! You can now cook a max of " +
-                maxCook + " bowls " + "a day!";
+        return "You leveled up to lvl. " + newLevel + 
+                "! You can now cook a max of " + maxCook + " bowls " + "a day!";
     }
 
     // return balance
