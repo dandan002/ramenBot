@@ -1,3 +1,9 @@
+/**************************************************************************************
+ * 
+ * Multi-line comment explaning what the program does
+ * 
+ **************************************************************************************/
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
