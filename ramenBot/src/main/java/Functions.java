@@ -1,6 +1,9 @@
+
 /**************************************************************************************
+ * 
  * This program contains the code behind commands like !balance and !work that users
  * call in Discord.
+ * 
  **************************************************************************************/
 
 import java.util.ArrayList;
@@ -9,29 +12,24 @@ import static java.lang.System.currentTimeMillis;
 
 public class Functions {
     // list of commands and their descriptions
-    private final String[] commands = {"work", "upgrade", "balance", "menu", "help", "cancel"};
-    private final String[] commandDesc = {"Work for money", "View all purchasable upgrades",
-            "View user balance",
+    private final String[] commands = { "work", "upgrade", "balance", "menu", "help",
+            "cancel" };
+    private final String[] commandDesc = { "Work for money",
+            "View all purchasable upgrades", "View user balance",
             "View menu options and user menu", "View all commands for Ramen Bot",
-            "Cancel the command"};
-
-    // list of menu items
-    private final String[] MENU_ITEMS = {"Beef Ramen", "Seafood Ramen", "Tonkotsu Ramen", "Miso Ramen",
-            "Spicy Miso Ramen", "Shoyu Ramen", "Wasabi Shoyu Ramen", "Pork Rice Bowl"};
+            "Cancel the command" };
 
     // upgrades
-    private final String[] upgrades = {"Instagram Shoutout", "New Paint", "Sign Flipper", "Youtube Ad",
-            "New Furniture", "Better Appliances"};
-    private final int[] upgradeCosts = {10, 20, 30, 50, 100, 250};
+    private final String[] upgrades = { "Instagram Shoutout", "New Paint",
+            "Sign Flipper", "Youtube Ad", "New Furniture", "Better Appliances" };
+    private final int[] upgradeCosts = { 10, 20, 30, 50, 100, 250 };
     private final int MAX_UPGRADE_LVL = 5;
 
     // passed database connection variable.
     private MongoConnection user;
-    private Menu menu;
 
     public Functions(MongoConnection current) {
         user = current;
-        menu = new Menu();
     }
 
     // displays a help menu
@@ -44,7 +42,6 @@ public class Functions {
         }
         return str.toString();
     }
-
 
     // earn a random amount of money when you work
     public String work() {
