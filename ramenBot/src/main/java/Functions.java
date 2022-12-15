@@ -1,11 +1,16 @@
+/**
+ * This program contains the code behind commands like !balance and !work that users
+ * call in Discord.
+ */
+
 import java.util.ArrayList;
 
 import static java.lang.System.currentTimeMillis;
 
 public class Functions {
     // list of commands and their descriptions
-    private String[] commands = {"work", "upgrade", "balance", "menu", "help", "cancel"};
-    private String[] commandDesc = {"Work for money", "View all purchasable upgrades",
+    private final String[] commands = {"work", "upgrade", "balance", "menu", "help", "cancel"};
+    private final String[] commandDesc = {"Work for money", "View all purchasable upgrades",
             "View user balance",
             "View menu options and user menu", "View all commands for Ramen Bot",
             "Cancel the command"};
