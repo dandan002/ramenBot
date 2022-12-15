@@ -1,6 +1,8 @@
 /******************************************************************************
  *
- * This program does something
+ * This program calls the methods in Functions.java based on user input from
+ * Discord. It also sets up the bot in Discord and establishes a connection
+ * to the MongoDB Atlas database.
  *
  *****************************************************************************/
 
