@@ -1,7 +1,7 @@
-/**
+/**************************************************************************************
  * This program contains the code behind commands like !balance and !work that users
  * call in Discord.
- */
+ **************************************************************************************/
 
 import java.util.ArrayList;
 
