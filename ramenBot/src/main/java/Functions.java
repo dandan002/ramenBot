@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import static java.lang.System.currentTimeMillis;
 
 public class Functions {
-    // color terminal output variables
-    public final String PURPLE_TEXT = "\u001B[35m";
-    public final String RESET = "\u001B[0m";
-
     // list of commands and their descriptions
     private String[] commands = {"work", "upgrade", "balance", "menu", "help", "cancel"};
     private String[] commandDesc = {"Work for money", "View all purchasable upgrades",
