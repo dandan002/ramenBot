@@ -80,7 +80,6 @@ public class DiscordIntegration extends ListenerAdapter {
             // rob
             if (message.substring(0,4).equals(prefix + "rob")) {
                 String target = message.substring(5);
-                System.out.println(event.getGuild().getMembersByEffectiveName("kai", true).get(0));
                 Member targetUser = event.getGuild().getMembersByEffectiveName(target, true).get(0);
                 String username = targetUser.getId();
                 MongoConnection target2 = new MongoConnection(username, serverId);
