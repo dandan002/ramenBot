@@ -9,20 +9,23 @@
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 public class DiscordIntegration extends ListenerAdapter {
     // Sets up and registers JDA listener
     public static void main(String[] args) throws Exception {
         JDA api = JDABuilder
-                .createDefault("MTA1MDUzNjA0MTQxNDY2MDE1Nw.GYXtzj.A" +
-                                "W3_G_4H7eFSTWyuwmqlDkOYyxfEVfEX15Wy48",
+                .createDefault("Redacted token",
                         GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT,
-                        GatewayIntent.GUILD_MEMBERS)
+                        GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES,
+                        GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_WEBHOOKS,
+                        GatewayIntent.MESSAGE_CONTENT).setMemberCachePolicy(MemberCachePolicy.ALL)
                 .addEventListeners(new DiscordIntegration()).
                 setActivity(Activity.playing("COS 126")).build();
     }
@@ -72,6 +75,16 @@ public class DiscordIntegration extends ListenerAdapter {
             // check balance
             if (message.equals(prefix + "balance")) {
                 currentChannel.sendMessage(workflow.balance()).queue();
+            }
+
+            // rob
+            if (message.substring(0,4).equals(prefix + "rob")) {
+                String target = message.substring(5);
+                System.out.println(event.getGuild().getMembersByEffectiveName("kai", true).get(0));
+                Member targetUser = event.getGuild().getMembersByEffectiveName(target, true).get(0);
+                String username = targetUser.getId();
+                MongoConnection target2 = new MongoConnection(username, serverId);
+                currentChannel.sendMessage(workflow.rob(target2, target)).queue();
             }
 
             // display menu
