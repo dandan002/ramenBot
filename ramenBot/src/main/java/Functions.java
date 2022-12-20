@@ -39,7 +39,7 @@ public class Functions {
             "Sign Flipper", "Youtube Ad",
             "New Furniture", "Better Appliances"
     };
-    private final int[] upgradeCosts = { 10, 20, 30, 50, 100, 250 };
+    private final int[] upgradeCosts = {10, 20, 30, 50, 100, 250};
     private final int MAX_UPGRADE_LVL = 5;
 
     // passed database connection variable.
@@ -90,8 +90,8 @@ public class Functions {
         }
         StringBuilder str = new StringBuilder();
         str.append("You leveled up to lvl. " + newLevel +
-                           "! You can now cook a max of " +
-                           maxCook + " bowls a day!");
+                "! You can now cook a max of " +
+                maxCook + " bowls a day!");
         if (newLevel == 20) {
             str.append("\n" + "You're at the max level!");
         }
@@ -134,8 +134,7 @@ public class Functions {
             target.changeBalance(currentTargetBalance - amountStolen);
             user.changeBalance(user.getBalance() + amountStolen);
             return "You stole $" + amountStolen + " from " + name + "!";
-        }
-        else {
+        } else {
             user.changeBalance(user.getBalance() - 300);
             return "You got caught! You were fined $300.";
         }
@@ -149,12 +148,12 @@ public class Functions {
         ArrayList<Integer> currentUpgrades = user.getUpgradeLevels();
         for (int i = 0; i < currentUpgrades.size(); i++) {
             upgrades.append("\n" + (i + 1) + ") " + this.upgrades[i] + " lvl. "
-                                    + currentUpgrades.get(i)
-                                    + " costs " + upgradeCosts[i]
-                                    + " to upgrade.");
+                    + currentUpgrades.get(i)
+                    + " costs " + upgradeCosts[i]
+                    + " to upgrade.");
         }
         upgrades.append("\n\n" + "To upgrade a function, type " +
-                                prefix + "upgrade <UPGRADE NUMBER>");
+                prefix + "upgrade <UPGRADE NUMBER>");
         return upgrades.toString();
     }
 
@@ -171,8 +170,7 @@ public class Functions {
             user.changeMultiplier(user.getMultiplier() + 0.1);
             return this.upgrades[index] + " is now level "
                     + user.getUpgradeLevels().get(index);
-        }
-        else {
+        } else {
             return currentUpgrade + " is already maxed out!";
         }
     }
